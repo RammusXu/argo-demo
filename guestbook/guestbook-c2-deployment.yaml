@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-c2
 spec:
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
