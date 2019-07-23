@@ -17,7 +17,7 @@ spec:
         # The image below can be flip from 0.1 to 0.2 
         image: gcr.io/google-samples/hello-app:1.0
         ports:
-        - containerPort: 80
+        - containerPort: 8080
   minReadySeconds: 30
   revisionHistoryLimit: 3
   strategy:
@@ -37,7 +37,7 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
 ---
 kind: Service
 apiVersion: v1
@@ -49,4 +49,4 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
