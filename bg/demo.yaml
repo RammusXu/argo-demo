@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: example-rollout-bluegreen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guestbook
+  template:
+    metadata:
+      labels:
+        app: guestbook
+    spec:
+      containers:
+      - name: guestbook
+        # The image below can be flip from 0.1 to 0.2 
+        image: gcr.io/google-samples/hello-app:1.0
+        ports:
+        - containerPort: 80
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+  strategy:
+    blueGreen: 
+      activeService: active-service
+      previewService: preview-service
+      autoPromotionEnabled: false
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: active-service
+spec:
+  selector:
+    app: guestbook
+  type:  LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: preview-service
+spec:
+  selector:
+    app: guestbook
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
