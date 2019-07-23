@@ -46,6 +46,7 @@ metadata:
 spec:
   selector:
     app: guestbook
+  type:  LoadBalancer
   ports:
   - protocol: TCP
     port: 80
