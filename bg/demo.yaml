@@ -15,7 +15,7 @@ spec:
       containers:
       - name: guestbook
         # The image below can be flip from 1.0 to 2.0
-        image: gcr.io/google-samples/hello-app:2.0
+        image: gcr.io/google-samples/hello-app:1.0
         ports:
         - containerPort: 8080
   minReadySeconds: 30
@@ -24,7 +24,8 @@ spec:
     blueGreen: 
       activeService: active-service
       previewService: preview-service
-      autoPromotionEnabled: false
+      autoPromotionEnabled: true
+      autoPromotionSeconds: 3600
 ---
 kind: Service
 apiVersion: v1
