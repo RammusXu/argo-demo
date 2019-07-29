@@ -15,7 +15,8 @@ spec:
       containers:
       - name: guestbook
         # The image below can be flip from 1.0 to 2.0
-        image: gcr.io/google-samples/hello-app:2.0
+        # image: gcr.io/google-samples/hello-app:2.0
+        image: gcr.io/google-containers/echoserver:1.10
         ports:
         - containerPort: 8080
   minReadySeconds: 30
@@ -27,7 +28,7 @@ spec:
       autoPromotionEnabled: false
 
       # If the AutoPromotionEnabled field is set to true, this field will be ignored
-      autoPromotionSeconds: 3600
+      autoPromotionSeconds: 120
 ---
 kind: Service
 apiVersion: v1
