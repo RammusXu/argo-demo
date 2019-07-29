@@ -24,7 +24,7 @@ spec:
     blueGreen: 
       activeService: active-service
       previewService: preview-service
-      # autoPromotionEnabled: true
+      autoPromotionEnabled: false
 
       # If the AutoPromotionEnabled field is set to true, this field will be ignored
       autoPromotionSeconds: 3600
